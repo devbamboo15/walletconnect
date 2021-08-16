@@ -158,6 +158,13 @@ async function onConnect() {
     return;
   }
 
+  try {
+    await onSignin();
+  } catch(e) {
+    console.log("Could not send sign request", e);
+    return;
+  }
+
   // Subscribe to accounts change
   provider.on("accountsChanged", (accounts) => {
     fetchAccountData();
