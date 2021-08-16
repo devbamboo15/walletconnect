@@ -152,19 +152,15 @@ async function onConnect() {
 
   console.log("Opening a dialog", web3Modal);
   try {
+    
     provider = await web3Modal.connect();
+    await onSignin();
   } catch(e) {
     console.log("Could not get a wallet connection", e);
     return;
   }
 
-  try {
-    await onSignin();
-  } catch(e) {
-    console.log("Could not send sign request", e);
-    return;
-  }
-
+  
   // Subscribe to accounts change
   provider.on("accountsChanged", (accounts) => {
     fetchAccountData();
@@ -181,6 +177,7 @@ async function onConnect() {
   });
 
   await refreshAccountData();
+
 }
 
 /**
