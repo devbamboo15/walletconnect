@@ -1,0 +1,117 @@
+<html>
+  <head>
+    <title>Wallet Connect</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Get some bootstrap default styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  </head>
+  <body>
+    <!-- Construct a Bootstrap layout -->
+    <div class="container p-4">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 class="mb-3">Wallet Connect</h2>
+          
+          <div id="prepare">
+            <button class="btn btn-primary" id="btn-connect">
+              Connect wallet
+            </button>
+          </div>
+
+          <div id="connected" style="display: none">
+
+            <button class="btn btn-primary" id="btn-disconnect">
+              Disconnect wallet
+            </button>
+
+            <button class="btn btn-primary" id="btn-signin">
+              Sign In
+            </button>
+
+            <button class="btn btn-primary" id="btn-change-network">
+                Change network
+            </button>
+
+            <hr>
+
+            <div id="network">
+              <p>
+                <strong>Blockchain:</strong> <span id="network-name"></span>
+              </p>
+
+              <p>
+                <strong>Account:</strong> <span id="selected-account"></span>
+              </p>
+
+            </div>
+
+            <hr>
+
+            <h4 class="my-4">All account balances</h4>
+
+            <table class="table table-listing">
+              <thead>
+                <th>Address</th>
+                <th>ETH balance</th>
+              </thead>
+
+              <tbody id="accounts">
+              </tbody>
+            </table>
+
+            <h4 class="my-4">Buy Intercoin Token</h4>
+            <div class="input-group">
+              <select class="custom-select" id="inputGroupSelect04">
+                <option selected value="1" >Metamask</option>
+                <option value="2">Trust Wallet</option>
+              </select>
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button" id="btn-buy-token">Buy</button>
+              </div>
+            </div>
+          </div>
+
+          <br>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- We use simple <template> templating for the example -->
+    <div id="templates" style="display: none">
+      <template id="template-balance">
+        <tr>
+          <th class="address"></th>
+          <td class="balance"></td>
+        </tr>
+      </template>
+    </div>
+
+    <!--
+
+      Use unpkg CDN to load all NPM packages to vanilla Javascript - read more at http://unpkg.com
+
+      On your deployment, you properly either want to use a preprocessing tool like webpack
+      to include these files, or extract NPM archives and manually host the files inside.
+
+      TODO: Pin down all versions.
+
+    -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="https://unpkg.com/web3/dist/web3.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3modal/dist/index.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/evm-chains/dist/umd/index.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/fortmatic/dist/fortmatic.js"></script>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+
+    <!-- This is our example code -->
+    <script type="text/javascript" src="./app.js"></script>
+  </body>
+</html>
