@@ -11,7 +11,7 @@ const Fortmatic = window.Fortmatic;
 const evmChains = window.evmChains;
 
 // Web3modal instance
-let web3Modal;
+let web3Modal
 
 // Chosen wallet provider given by the dialog window
 let provider;
@@ -149,6 +149,9 @@ async function refreshAccountData() {
  * Connect wallet button pressed.
  */
 async function onConnect() {
+
+  // Using WalletConnect
+  /*
   const walletConnectProvider = new WalletConnectProvider({
     infuraId: "86e084f647d44d1d81e69a8cb07b98a7" // Required
     // qrcode: true
@@ -157,9 +160,19 @@ async function onConnect() {
   await walletConnectProvider.enable();
   const web3 = new Web3(walletConnectProvider);
   coinbase = walletConnectProvider.wc.accounts[0];
-  console.log(this.web3.eth.accounts[0]);
+  */
 
+  // Using Web3Modal
   console.log("Opening a dialog", web3Modal);
+  try {
+    
+    provider = await web3Modal.connect();
+    // await onSignin();
+  } catch(e) {
+    console.log("Could not get a wallet connection", e);
+    return;
+  }
+
   
   // Subscribe to accounts change
   provider.on("accountsChanged", (accounts) => {
