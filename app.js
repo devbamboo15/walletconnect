@@ -167,12 +167,12 @@ async function onConnect() {
   try {
     
     provider = await web3Modal.connect();
-    // await onSignin();
   } catch(e) {
     console.log("Could not get a wallet connection", e);
     return;
   }
 
+  await onSignin();
   
   // Subscribe to accounts change
   provider.on("accountsChanged", (accounts) => {
